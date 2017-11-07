@@ -1,11 +1,14 @@
 const _ = require('lodash');
 const data = [
-    {name: "Raul" , content: 'This is my first tweet'},
-    {name: "Alyssa" , content: 'I have unnecessarily strong political beliefs'}
+    {name: "Raul" , content: 'This is my first tweet', id: 1},
+    {name: "Alyssa" , content: 'I have unnecessarily strong political beliefs', id: 2}
 ];
 
+let tweetCount = 2
+
 function add (name, content) {
-    data.push({ name: name, content: content });
+
+    data.push({ name: name, content: content, id: ++tweetCount });
   }
   
   function list () {
@@ -37,4 +40,3 @@ function add (name, content) {
     module.exports.add( getFakeName(), getFakeTweet() );
   }
 
-  console.log(data)

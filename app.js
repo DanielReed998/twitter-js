@@ -24,7 +24,7 @@ const io = socketio.listen(server);
 nunjucks.configure('views',{noCache: true});
 nunjucks.render('index.html', context, (err, output)=>{
     if (err) throw err;
-    console.log(output);
+    
 });
 
 app.set('view engine', 'html');
@@ -39,8 +39,7 @@ app.use('/', routes(io));
 
 
 app.use((request, response, next)=>{
-    console.log(`route: ${request.path}`)
-    console.log(`method: ${request.method}`)
+    
     next();
 })
 

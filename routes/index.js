@@ -14,6 +14,15 @@ module.exports = function (io) {
           var list = tweetBank.find( {name: name} );
           res.render( 'index', { tweets: list, showForm: true, name: name } );
         });
+
+        router.get('/showTweet/:id', function(req, res) {
+            console.log(`id: ${req.params.id}`)
+            var id = parseInt(req.params.id);
+            console.log(typeof id)
+            var uniqueTweet = tweetBank.find( {id: id} );
+            console.log(uniqueTweet);
+            res.render( 'index', { tweets: uniqueTweet, showForm: false } );
+          });
       
       router.post('/tweets', function(req, res) {
           var name = req.body.name;
