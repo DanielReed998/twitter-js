@@ -1,7 +1,10 @@
 const express = require('express');
 const nunjucks = require('nunjucks');
 const routes = require('./routes');
+const bodyParser = require('body-parser');
+const socketio = require('socket.io');
 const app = express();
+
 
 let context = {
     title: 'An Example',
@@ -12,6 +15,12 @@ let context = {
     ]
 };
 
+const server = app.listen(3001,()=>{
+    console.log('server listening');
+})
+
+const io = socketio.listen(server);
+
 nunjucks.configure('views',{noCache: true});
 nunjucks.render('index.html', context, (err, output)=>{
     if (err) throw err;
@@ -20,9 +29,12 @@ nunjucks.render('index.html', context, (err, output)=>{
 
 app.set('view engine', 'html');
 app.engine('html', nunjucks.render);
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(express.static('public'))
 
-app.use('/', routes);
+app.use('/', routes(io));
 
 
 
@@ -41,7 +53,5 @@ app.use((request, response, next)=>{
 // })
 
 
-app.listen(3001,()=>{
-    console.log('server listening');
-})
+
 
