@@ -2,10 +2,13 @@ html,
 body {
   height: 100%;
   /* The html and body elements cannot have any padding or margin. */
+  
+ 
 }
 
 /* Wrapper for page content to push down footer */
 #wrap {
+  background: linear-gradient(whitesmoke,#333);
   min-height: 100%;
   height: auto;
   /* Negative indent footer by its height */
@@ -56,4 +59,13 @@ code {
 }
 .content .by {
   font-weight: bold;
+}
+
+img.tweet-image {
+  height: 100px;
+  width: 100px;
+}
+
+li {
+  padding: 0.5em 0;
 }
